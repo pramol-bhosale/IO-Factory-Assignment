@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-md">
+        <span class="text-muted">Change the array from code and see result</span>
+    </div>
+    <div class="container pt-5">
+    <h4 id="result"></h4>
+        <table class="table table-bordered" id="tank">
+       
+        </table>
+    </div>
+<script>
+
+var arr=[7,0,0,5,0,0,0,7,4,0]
+var len=arr.length
+var max=Math.max.apply(null, arr);
+var flag=false
+var row=max
+html="";
+var te=0
+var result=0
+var pram=0;
+for(var i=max;i>0;i--){
+html+="<tr>"
+    pram=0
+    for(var j=0;j<len;j++){
+        
+        var temp=i-arr[j]
+        
+        if(temp<=0){
+            te=nextNum(arr,j)    
+            if(arr[j] < te){
+                pram=arr[j]
+             
+            }
+            else{
+                pram=te
+            
+            }
+            html+="<td class='bg-warning'></td>"
+            flag=true
+        }
+        else{
+            
+            if(flag){
+                var temp2=i-pram
+                if(temp2 <= 0){
+                    html+="<td class='bg-primary'></td>"
+                    result++ 
+                }
+              else{
+            html+="<td></td>"
+                }
+            }
+            else{
+
+            html+="<td></td>"
+            }
+            
+        }
+        
+        
+    }
+html+="</tr>"
+}
+document.querySelector("#tank").innerHTML=html;
+
+document.querySelector("#result").innerHTML=result;
+function nextNum(arr, i){
+    //console.log("arr= "+arr+"i="+i)
+    res=0
+for(var j=i+1;j<arr.length;j++){
+
+    if(arr[j]>0){
+        
+        res=arr[j]
+        break
+    }
+}
+return res
+
+}
+</script>
+</body>
+</html>
